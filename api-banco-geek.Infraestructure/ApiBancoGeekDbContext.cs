@@ -10,9 +10,13 @@ namespace api_banco_geek.Infraestructure
 {
     public class ApiBancoGeekDbContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public ApiBancoGeekDbContext()
         {
-            optionsBuilder.UseSqlServer(@"Server=.;Database=ApiBancoGeek;Trusted_Connection=True;");
+        }
+
+        public ApiBancoGeekDbContext(DbContextOptions<ApiBancoGeekDbContext> options)
+            : base(options)
+        {
         }
 
         public virtual DbSet<ApiCallLog> ApiCallLog { get; set; }
