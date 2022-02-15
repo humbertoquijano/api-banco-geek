@@ -24,6 +24,8 @@ namespace api_banco_geek.Domain.Services
 
         public SumResult ProcessNumbers(SumArgs sumArgs)
         {
+            AssureValidValues(sumArgs);
+
             try
             {
                 decimal total = sumArgs.A + sumArgs.B;
@@ -44,6 +46,14 @@ namespace api_banco_geek.Domain.Services
             {
                 _logger.LogError(ex, "args: {@sumArgs}", sumArgs);
                 return null;
+            }
+        }
+
+        private static void AssureValidValues(SumArgs sumArgs)
+        {
+            if (sumArgs.A <= 0 || sumArgs.B <= 0)
+            {
+                throw new Exception("Los valores de los argumentos deben ser mayores que cero");
             }
         }
     }
