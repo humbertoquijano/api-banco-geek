@@ -47,5 +47,15 @@ namespace api_banco_geek.UnitTest
             _testOutputHelper.WriteLine($"fibonnacio 70:{testval_70}");
             _testOutputHelper.WriteLine($"fibonnacio 100:{testval_100}");
         }
+
+        [Fact]
+        public void Decimal_Must_Host_2Max_Integers()
+        {
+            int a = int.MaxValue;
+            int b = int.MinValue;
+            decimal testDecimal = decimal.MaxValue;
+
+            Assert.True(testDecimal >= (a + b));
+        }
     }
 }
