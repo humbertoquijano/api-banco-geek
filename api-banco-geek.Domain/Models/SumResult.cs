@@ -8,7 +8,7 @@ namespace api_banco_geek.Domain.Models
 {
     public class SumResult
     {
-        public int ResultValue { get; set; }
+        public decimal ResultValue { get; set; }
         public bool IsResultValueInFibonacci { get; set; }
     }
 }
