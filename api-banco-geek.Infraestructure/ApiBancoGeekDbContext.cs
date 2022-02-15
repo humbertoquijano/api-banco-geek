@@ -10,6 +10,11 @@ namespace api_banco_geek.Infraestructure
 {
     public class ApiBancoGeekDbContext : DbContext
     {
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(@"Server=.;Database=ApiBancoGeek;Trusted_Connection=True;");
+        }
+
         public virtual DbSet<ApiCallLog> ApiCallLog { get; set; }
         public virtual DbSet<FibonacciValue> FibonacciValue { get; set; }
 
@@ -23,7 +28,7 @@ namespace api_banco_geek.Infraestructure
                 entity.Property(e => e.ValueB).IsRequired();
                 entity.Property(e => e.ResultValue).IsRequired();
                 entity.Property(e => e.IsResultValueInFibonnaci).IsRequired();
-                entity.Property(e => e.CreatedAt).HasDefaultValue(DateTime.Now);
+                entity.Property(e => e.CreatedAt).IsRequired();
             });
 
             modelBuilder.Entity<FibonacciValue>(entity => {
